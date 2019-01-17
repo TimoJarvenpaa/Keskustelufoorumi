@@ -1,0 +1,2 @@
+# Keskustelufoorumi
+Aineopintojen harjoitustyö: Tietokantasovellus
