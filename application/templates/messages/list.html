@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  <h1>{{ title }}</h1>
   <table>
     <tr>
       <th>Messages</th>
@@ -11,4 +12,8 @@
     </tr>
     {% endfor %}
   </table>
+  <form method="POST" action="{{ url_for('messages_create' ,thread_id=thread_id) }}">
+    <input type="text" name="content"/>
+    <input type="submit" value="Add a new message"/>
+  </form>
 {% endblock %}
