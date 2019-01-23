@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Messages</th>
+    </tr>
+    {% for message in messages %}
+    <tr>
+      <td>{{ message.content }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
