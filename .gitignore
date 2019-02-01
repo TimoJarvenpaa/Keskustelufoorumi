@@ -117,4 +117,5 @@ dmypy.json
 
 # Misc
 .vscode
+settings.json
 forum.db

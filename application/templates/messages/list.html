@@ -9,11 +9,12 @@
     {% for message in messages %}
     <tr>
       <td>{{ message.content }}</td>
+      <td>by {{ message.account_id|getUserNameFromId }}</td>
     </tr>
     {% endfor %}
   </table>
-  <form method="POST" action="{{ url_for('messages_create' ,thread_id=thread_id) }}">
-    <input type="text" name="content"/>
-    <input type="submit" value="Add a new message"/>
-  </form>
+  
+  {% with thread_id=thread_id %}
+    {% include "messages/new.html" %}
+  {% endwith %}
 {% endblock %}
