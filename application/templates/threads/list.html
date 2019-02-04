@@ -7,7 +7,7 @@
     </tr>
     {% for thread in threads %}
     <tr>
-      <td><a href="{{ url_for('messages_index', thread_id=thread.id) }}">{{ thread.title }}</a></td>
+      <td><a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}">{{ thread.title }}</a></td>
     </tr>
     {% endfor %}
   </table>

@@ -1,7 +1,12 @@
+{% extends "layout.html" %}
+
 {% block body %}
-<form method="POST" action="{{ url_for('messages_create', thread_id=thread_id) }}">
+<form method="POST" action="{{ url_for('edit_message', thread_id=thread_id, message_id=message_id) }}">
   <table>
     <tr>
+      <td>
+        {{ form.content.label }}
+      </td>
       <td>
         {{ form.content(cols="45", rows="5")}}
       </td>
@@ -15,7 +20,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Add a new message" />
+        <input type="submit" value="Save changes" />
       </td>
     </tr>
   </table>
