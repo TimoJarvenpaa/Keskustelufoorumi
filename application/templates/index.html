@@ -4,4 +4,20 @@
 <p>
   Hello world!
 </p>
+
+{% if count_messages is defined %}
+<p>
+  Total number of messages posted by each user:
+</p>
+
+<table>
+  {% for user in count_messages %}
+  <tr>
+    <td>{{user.name}} ({{user.messages}} messages)</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endif %}
+
 {% endblock %}

@@ -1,11 +1,9 @@
 from application import db
+from application.models import Base
 
-class Thread(db.Model):
+class Thread(Base):
 
     __tablename__ = "thread"
-
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     title = db.Column(db.String(255), nullable=False)
 
