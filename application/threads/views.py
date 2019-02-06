@@ -1,9 +1,10 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.threads.models import Thread
 from application.threads.forms import ThreadForm
+from application.messages.models import Message
 
 @app.route("/threads", methods=["GET"])
 def threads_index():
@@ -26,5 +27,14 @@ def threads_create():
     
     db.session().add(t)
     db.session().commit()
-  
+
+    t = Thread.query.filter_by(title=t.title).first()
+
+    m = Message(form.content.data)
+    m.thread_id = t.id
+    m.account_id = current_user.id
+    
+    db.session().add(m)
+    db.session().commit()
+
     return redirect(url_for("threads_index"))

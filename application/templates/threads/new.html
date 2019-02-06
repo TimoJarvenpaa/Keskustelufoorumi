@@ -19,6 +19,21 @@
       </td>
     </tr>
     <tr>
+      <td>
+        {{ form.content.label }}
+      </td>
+      <td>
+        {{ form.content(cols="45", rows="5") }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.content.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
       <td colspan="2">
         <input type="submit" value="Create a new thread" />
       </td>
