@@ -38,3 +38,13 @@ def threads_create():
     db.session().commit()
 
     return redirect(url_for("threads_index"))
+
+@app.route("/threads/delete/<thread_id>", methods=["POST"])
+@login_required
+def delete_thread(thread_id):
+    thread = Thread.query.get(thread_id)
+
+    db.session().delete(thread)
+    db.session().commit()
+
+    return redirect(url_for("threads_index"))

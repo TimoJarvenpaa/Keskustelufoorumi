@@ -1,14 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Threads</th>
-    </tr>
-    {% for thread in threads %}
-    <tr>
-      <td><a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}">{{ thread.title }}</a></td>
-    </tr>
-    {% endfor %}
-  </table>
+<table>
+  <tr>
+    <th>Threads</th>
+  </tr>
+  {% for thread in threads %}
+  <tr>
+    <td>
+      <a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}">{{ thread.title }}</a>
+    </td>
+    <td>
+      <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id) }}">
+        <input type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}
