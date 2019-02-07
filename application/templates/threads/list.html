@@ -3,16 +3,16 @@
 {% block body %}
 <table>
   <tr>
-    <th>Threads</th>
+    <th style="font-size:30px">Threads</th>
   </tr>
   {% for thread in threads %}
   <tr>
-    <td>
-      <a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}">{{ thread.title }}</a>
+    <td style="padding-right:10px">
+      <a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}" class="text-warning">{{ thread.title }}</a>
     </td>
-    <td>
+    <td style="padding-top:5px;padding-bottom:5px;">
       <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id) }}">
-        <input type="submit" value="Delete">
+        <input type="submit" value="Delete" class="btn btn-primary">
       </form>
     </td>
   </tr>

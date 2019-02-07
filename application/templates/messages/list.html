@@ -1,31 +1,36 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <h1>{{ title }}</h1>
-  <table style="border-collapse:collapse;border: 1px solid black;">
-    <th style="border-right: 1px solid black;">User</th>
-    <th>Message</th>
+<h1>{{ title }}</h1>
+<table class="table table-bordered table-dark" style="word-break: break-all;table-layout: fixed;white-space: pre-line;">
+  <thead>
+    <tr>
+      <th scope="col" style="width:10%">User</th>
+      <th scope="col" style="width:70%">Message</th>
+      <th scope="col" style="width:20%"></th>
+    </tr>
+  </thead>
+  <tbody>
     {% for message in messages %}
-    <tr style="border: 1px solid black;">
-      <td style="border: 1px solid black;padding: 10px;">{{ message.account_id|getUserNameFromId }}</td>
+    <tr>
+      <td class="text-warning">{{ message.account_id|getUserNameFromId }}</td>
       <td>
-        <div style="padding: 10px;">
-          <div style="padding-bottom: 10px;">{{ message.content }}</div>
-          <div>
-            <form method="GET" action="{{ url_for('edit_message', thread_id = thread_id, message_id = message.id) }}">
-              <input type="submit" value="Edit message"/>
-            </form>
-          </div>
-          {% if message.date_created != message.date_modified %}
-            <div>Last edited on {{ message.date_modified }}</div>
-          {% endif %}
-        </div>
+        {{ message.content }}
+        {% if message.date_created != message.date_modified %}
+        <p class="text-warning">Last edited on {{ message.date_modified }}</p>
+        {% endif %}
+      </td>
+      <td>
+        <form method="GET" action="{{ url_for('edit_message', thread_id = thread_id, message_id = message.id) }}">
+          <input type="submit" value="Edit message" class="btn btn-danger"/>
+        </form>
       </td>
     </tr>
     {% endfor %}
-  </table>
-  
-  {% with thread_id=thread_id %}
-    {% include "messages/new.html" %}
-  {% endwith %}
+  </tbody>
+</table>
+
+{% with thread_id=thread_id %}
+{% include "messages/new.html" %}
+{% endwith %}
 {% endblock %}

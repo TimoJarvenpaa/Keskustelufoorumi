@@ -42,7 +42,8 @@ def auth_signup():
     existing_user = User.query.filter_by(username=form.username.data).first()
 
     if existing_user:
-      return render_template("auth/signupform.html", form = form, error = "Username already taken")
+      form.username.errors.append("Username already taken")
+      return render_template("auth/signupform.html", form = form)
       
     u = User(form.name.data, form.username.data, form.password.data)
     db.session().add(u)

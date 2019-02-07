@@ -1,43 +1,14 @@
 {% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.username.label }}
-      </td>
-      <td>
-        {{ form.username }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.username.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.password.label }}
-      </td>
-      <td>
-        {{ form.password }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.password.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Login" />
-      </td>
-    </tr>
-</form>
+<div class="container" style="width: 50%">
+  <form method="POST" action="{{ url_for('auth_login') }}">
+    <dl>
+      {{ wtf.quick_form(form) }}
+      <p>{{ error }}</p>
+      <input class="btn btn-primary" type="submit" value="Log in">
+    </dl>
+  </form>
+</div>
 {% endblock %}
