@@ -17,11 +17,6 @@ def getMessagesByThreadId(thread_id):
       title = title,
       form = MessageForm())
 
-#@app.route("/messages/new/")
-#@login_required
-#def messages_form():
-#    return render_template("messages/new.html", form = MessageForm())
-
 @app.route("/threads/<thread_id>/", methods=["POST"])
 @login_required
 def messages_create(thread_id):
@@ -62,6 +57,16 @@ def edit_message(thread_id, message_id):
       return render_template("messages/editform.html", form = form, thread_id = thread_id, message_id = message_id)
     
     message.content = form.content.data
+    db.session().commit()
+
+    return redirect(url_for("getMessagesByThreadId", thread_id=thread_id))
+    
+@app.route("/threads/<thread_id>/delete/<message_id>", methods=["POST"])
+@login_required
+def delete_message(thread_id, message_id):
+    message = Message.query.get(message_id)
+
+    db.session().delete(message)
     db.session().commit()
 
     return redirect(url_for("getMessagesByThreadId", thread_id=thread_id))
