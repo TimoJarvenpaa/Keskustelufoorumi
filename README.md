@@ -2,6 +2,14 @@
 
 [Linkki sovellukseen](https://blooming-reef-61522.herokuapp.com/)
 
+Sovelluksen käyttäminen vaatii käyttäjätunnuksen, jonka voi halutessaan luoda rekisteröitymislomakkeen kautta.
+
+Vaihtoehtoisesti voi myös käyttää alla olevaa valmiiksi luotua käyttäjätunnusta:
+```
+username: test
+password: user
+```
+
 [Linkki sovelluksen tietokantakaaviohahmotelmaan](documentation/forum_diagram.png)
 
 [Linkki sovelluksen käyttötapausesimerkkeihin](documentation/user_stories.md)
