@@ -1,20 +1,28 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1>Threads</h1>
+<br>
 <table>
   <tr>
-    <th style="font-size:30px">Threads</th>
+    <th style="padding-right:60px">Topic</th>
+    <th>Latest message</th>
   </tr>
   {% for thread in threads %}
   <tr>
-    <td style="padding-right:10px">
-      <a href="{{ url_for('getMessagesByThreadId', thread_id=thread.id) }}" class="text-warning">{{ thread.title }}</a>
+    <td style="padding-right:10px;padding-bottom:5px">
+      <a href="{{ url_for('get_messages_from_thread_id', thread_id=thread.id) }}" class="text-warning">{{ thread.title }}</a>
     </td>
+    <td style="padding-right:30px;padding-bottom:5px">
+      {{ thread.date_modified.strftime("%d.%m.%Y at %H:%M (UTC)") }}
+    </td>
+    {% if current_user.id == thread.account_id or current_user.role == "ADMIN" %}
     <td style="padding-top:5px;padding-bottom:5px;">
       <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id) }}">
         <input type="submit" value="Delete" class="btn btn-primary">
       </form>
     </td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>

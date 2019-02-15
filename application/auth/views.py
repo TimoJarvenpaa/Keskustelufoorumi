@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
+
+import bcrypt
 
 from application import app, db
 from application.auth.models import User
@@ -15,13 +17,17 @@ def auth_login():
     if not form.validate():
       return render_template("auth/loginform.html", form = form)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    user = User.query.filter_by(username=form.username.data).first()
+
     if not user:
-        return render_template("auth/loginform.html", form = form,
-                               error = "No such username or password")
+      form.username.errors.append("No such username")
+      return render_template("auth/loginform.html", form = form)
+    
+    if not user.password_is_correct(form.password.data):
+      form.password.errors.append("Wrong password")
+      return render_template("auth/loginform.html", form = form)
 
     login_user(user)
-    #print("Käyttäjä " + user.name + " tunnistettiin")
     return redirect(url_for("index"))
 
 @app.route("/auth/logout")
@@ -32,6 +38,10 @@ def auth_logout():
 @app.route("/auth/signup", methods = ["GET", "POST"])
 def auth_signup():
     if request.method == "GET":
+
+        if current_user.is_authenticated:
+          return redirect(url_for("index"))
+
         return render_template("auth/signupform.html", form = SignupForm())
 
     form = SignupForm(request.form)
@@ -44,8 +54,10 @@ def auth_signup():
     if existing_user:
       form.username.errors.append("Username already taken")
       return render_template("auth/signupform.html", form = form)
-      
-    u = User(form.name.data, form.username.data, form.password.data)
+    
+    hashed_pw = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8')
+
+    u = User(form.name.data, form.username.data, hashed_pw, form.role.data)
     db.session().add(u)
     db.session().commit()
 

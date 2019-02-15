@@ -19,6 +19,43 @@ else:
 
 db = SQLAlchemy(app)
 
+# kirjautuminen (osa 1)
+
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
+
+from flask_login import LoginManager, current_user
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+login_manager.login_view = "auth_login"
+login_manager.login_message = "Please login to use this functionality."
+
+# autorisointi
+from functools import wraps
+
+def login_required(role="ANY"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated:
+                return login_manager.unauthorized()
+            
+            unauthorized = False
+
+            if role != "ANY":
+                unauthorized = True
+
+            if current_user.get_role == role:
+              unauthorized = False
+
+            if unauthorized:
+                return login_manager.unauthorized()
+            
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
 # oman sovelluksen toiminnallisuudet
 from application import views
 
@@ -33,17 +70,8 @@ from application.messages import views
 from application.auth import models
 from application.auth import views
 
-# kirjautuminen
+# kirjautuminen (osa 2)
 from application.auth.models import User
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
-
-from flask_login import LoginManager
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-login_manager.login_view = "auth_login"
-login_manager.login_message = "Please login to use this functionality."
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -3,6 +3,8 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
+import bcrypt
+
 
 class User(Base):
 
@@ -11,13 +13,15 @@ class User(Base):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    role = db.Column(db.String(16), nullable=False)
 
     messages = db.relationship("Message", backref='account', lazy=True)
 
-    def __init__(self, name, username, password):
+    def __init__(self, name, username, password, role):
         self.name = name
         self.username = username
         self.password = password
+        self.role = role
 
     def get_id(self):
         return self.id
@@ -30,6 +34,12 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def get_role(self):
+      return self.role
+
+    def password_is_correct(self, password):
+      return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
     @staticmethod
     def count_messages_by_user():
