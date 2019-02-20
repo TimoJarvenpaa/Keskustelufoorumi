@@ -10,6 +10,8 @@ username: test
 password: user
 ```
 
+[Linkki sovelluksen asennusohjeeseen](documentation/installation_instructions.md)
+
 [Linkki sovelluksen tietokantakaaviohahmotelmaan](documentation/forum_diagram.png)
 
 [Linkki sovelluksen käyttötapausesimerkkeihin](documentation/user_stories.md)
