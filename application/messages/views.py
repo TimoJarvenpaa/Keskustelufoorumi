@@ -8,7 +8,7 @@ from application.messages.models import Message
 from application.threads.models import Thread
 from application.messages.forms import MessageForm
 
-@app.route("/threads/<thread_id>/", methods=["GET"])
+@app.route("/threads/<thread_id>", methods=["GET"])
 def get_messages_from_thread_id(thread_id):
     thread = Thread.query.filter_by(id=thread_id).first()
     title = thread.title
@@ -19,7 +19,7 @@ def get_messages_from_thread_id(thread_id):
       title = title,
       form = MessageForm())
 
-@app.route("/threads/<thread_id>/", methods=["POST"])
+@app.route("/threads/<thread_id>", methods=["POST"])
 @login_required()
 def messages_create(thread_id):
     form = MessageForm(request.form)
@@ -58,12 +58,12 @@ def edit_message(thread_id, message_id):
     if request.method == "GET":
         form = MessageForm()
         form.content.data = message.content
-        return render_template("messages/editform.html", form = form, thread_id = thread_id, message_id = message_id)
+        return render_template("messages/edit.html", form = form, thread_id = thread_id, message_id = message_id)
 
     form = MessageForm(request.form)
 
     if not form.validate():
-      return render_template("messages/editform.html", form = form, thread_id = thread_id, message_id = message_id)
+      return render_template("messages/edit.html", form = form, thread_id = thread_id, message_id = message_id)
     
     message.content = form.content.data
     db.session().commit()

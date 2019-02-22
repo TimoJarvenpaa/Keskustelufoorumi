@@ -4,4 +4,4 @@ from application.auth.models import User
 
 @app.route("/")
 def index():
-	return render_template("index.html", count_messages=User.count_messages_by_user())
+	return render_template("index.html", count_messages=User.count_messages_for_all_users())

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Categories</h1>
+<br>
+<table>
+  <tr>
+    <th style="padding-right:60px;padding-bottom:30px">Name</th>
+    <th style="padding-right:60px;padding-bottom:30px"># of threads in this category</th>
+  </tr>
+  {% for category in categories %}
+  <tr>
+    <td style="padding-right:10px;padding-bottom:5px">
+      {{ category.name }}
+    </td>
+    <td style="padding-right:10px;padding-bottom:5px;padding-left:20px">
+      {{ category.count }}
+    </td>
+    <td style="padding-top:5px;padding-bottom:5px;padding-right:10px;">
+      <form method="POST" action="{{ url_for('delete_category', category_id=category.id) }}">
+        <input type="submit" value="Delete" class="btn btn-danger">
+      </form>
+    </td>
+    <td style="padding-top:5px;padding-bottom:5px;">
+      <form method="GET" action="{{ url_for('edit_category', category_id=category.id) }}">
+        <input type="submit" value="Edit" class="btn btn-warning">
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+<div>
+  <form action="{{ url_for('create_category') }}">
+    <input type="submit" value="Create a new category" class="btn btn-success">
+  </form>
+</div>
+{% endblock %}

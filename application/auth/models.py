@@ -42,11 +42,24 @@ class User(Base):
       return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
     @staticmethod
-    def count_messages_by_user():
+    def count_messages_for_all_users():
       stmt = text("SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account"
                   " LEFT JOIN Message ON Message.account_id = Account.id"
                   " GROUP BY name"
                   " ORDER BY count DESC")
+      res = db.engine.execute(stmt)
+
+      response = []
+      for row in res:
+        response.append({"name":row[0], "messages":row[1]})
+
+      return response
+
+    @staticmethod
+    def count_user_messages_by_user_id(u_id):
+      stmt = text("SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account"
+                  " INNER JOIN Message ON Message.account_id = :id"
+                  " GROUP BY name").params(id=u_id)
       res = db.engine.execute(stmt)
 
       response = []

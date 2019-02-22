@@ -2,11 +2,13 @@
 
 {% block body %}
 <h1>Threads</h1>
+{% include "threads/filter.html" %}
 <br>
 <table>
   <tr>
     <th style="padding-right:60px">Topic</th>
     <th>Latest message</th>
+    <th>Categories</th>
   </tr>
   {% for thread in threads %}
   <tr>
@@ -16,11 +18,22 @@
     <td style="padding-right:30px;padding-bottom:5px">
       {{ thread.date_modified.strftime("%d.%m.%Y at %H:%M (UTC)") }}
     </td>
+    <td style="padding-right:20px;">
+      {% for c in thread.categories -%}
+        {{ c.name}}
+        {%- if not loop.last %}, {% endif -%}
+      {%- endfor %}
+    </td>
     {% if current_user.id == thread.account_id or current_user.role == "ADMIN" %}
-    <td style="padding-top:5px;padding-bottom:5px;">
+    <td style="padding-top:5px;padding-bottom:5px;padding-right:10px">
       <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id) }}">
-        <input type="submit" value="Delete" class="btn btn-primary">
+        <input type="submit" value="Delete" class="btn btn-danger">
       </form>
+    </td>
+    <td style="padding-top:5px;padding-bottom:5px;">
+        <form method="GET" action="{{ url_for('edit_thread', thread_id=thread.id) }}">
+          <input type="submit" value="Edit" class="btn btn-warning">
+        </form>
     </td>
     {% endif %}
   </tr>

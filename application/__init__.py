@@ -1,5 +1,5 @@
 # flask-sovellus
-from flask import Flask
+from flask import Flask, abort
 from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 Bootstrap(app)
@@ -39,18 +39,18 @@ def login_required(role="ANY"):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
             if not current_user.is_authenticated:
-                return login_manager.unauthorized()
+              return login_manager.unauthorized()
             
             unauthorized = False
 
             if role != "ANY":
-                unauthorized = True
+              unauthorized = True
 
-            if current_user.get_role == role:
+            if current_user.get_role() == role:
               unauthorized = False
 
             if unauthorized:
-                return login_manager.unauthorized()
+              abort(401)
             
             return fn(*args, **kwargs)
         return decorated_view
@@ -69,6 +69,9 @@ from application.messages import views
 
 from application.auth import models
 from application.auth import views
+
+from application.categories import models
+from application.categories import views
 
 # kirjautuminen (osa 2)
 from application.auth.models import User
