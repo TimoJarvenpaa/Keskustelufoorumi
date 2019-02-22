@@ -2,7 +2,7 @@
 
 [Linkki sovellukseen](https://blooming-reef-61522.herokuapp.com/)
 
-Sovelluksen käyttäminen vaatii käyttäjätunnuksen, jonka voi halutessaan luoda rekisteröitymislomakkeen kautta.
+Sovelluksen käyttäminen vaatii käyttäjätunnuksen, jonka voi halutessaan luoda sivulta löytyvän rekisteröitymislomakkeen kautta.
 
 Vaihtoehtoisesti voi myös käyttää alla olevaa valmiiksi luotua käyttäjätunnusta:
 ```
@@ -16,15 +16,14 @@ password: user
 
 [Linkki sovelluksen käyttötapausesimerkkeihin](documentation/user_stories.md)
 
-Harjoitustyöni tavoitteena on tehdä keskustelufoorumi videopeliharrastajien käyttöön. Foorumin käyttäjä voi mm. luoda itselleen käyttäjätunnuksen, lukea muiden käyttäjien kirjoituksia, luoda uusia viestiketjuja, lisätä viestejä olemassa oleviin ketjuihin tai vastata aiempiin viesteihin. Käyttäjä voi myös lisätä pelejä omaan pelikirjastoonsa ja antaa peleille arvosanoja. Pelien saamien arvosanojen keskiarvojen perusteella luodaan top-lista, jota käyttäjät voivat tarkastella.
+Harjoitustyöni tavoitteena on tehdä keskustelufoorumi videopeliharrastajien käyttöön. Foorumin käyttäjä voi mm. luoda itselleen käyttäjätunnuksen, lukea muiden käyttäjien kirjoituksia, luoda uusia viestiketjuja tai lisätä viestejä olemassa oleviin ketjuihin. Viestiketjujen luonnin yhteydessä niihin liitetään kategorioita, joiden perusteella näytettävien viestiketjujen listaa voi rajata.
 
-Järjestelmän ylläpitäjä voi lisäksi muokata tai poistaa viestejä tai viestiketjuja sekä määritellä tunnisteita, joiden perusteella viestiketjuja voi filtteröidä.
+Järjestelmän ylläpitäjällä on oikeus muokata ja poistaa käyttäjien luomia viestejä tai viestiketjuja. Lisäksi ylläpitäjä voi lisätä uusia kategorioita sekä muokata tai poistaa olemassa olevia kategorioita.
 
 Toimintoja:
 
-* Kirjautuminen
-* Viestiketjun lisääminen ja viestin kirjoittaminen
-* Viestin muokkaus ja vastausviestin laatiminen
-* Viestiketjujen näyttäminen eri kriteerein
-* Viestien poistaminen
-* Pelien lisääminen käyttäjän omaan pelikirjastoon ja pelien arvostelu
+* Käyttäjätunnuksen luominen ja sisäänkirjautuminen
+* Viestiketjujen luominen ja viestien kirjoittaminen
+* Viestien ja viestiketjujen muokkaaminen ja poistaminen
+* Kategorioiden lisääminen, muokkaaminen ja poistaminen
+* Näytettävien viestiketjujen rajaaminen kategorioiden perusteella
