@@ -1,7 +1,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block body %}
-<div class="col-md-2" style="width: 50%">
+<div class="col-md-2 pl-0" style="width: 50%">
   <form class="form form-horizontal" method="POST" action="{{ url_for('threads_index') }}">
     <dl>
       {{ wtf.quick_form(form) }}

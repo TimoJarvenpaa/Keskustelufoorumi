@@ -59,7 +59,7 @@ class User(Base):
     @staticmethod
     def count_user_messages_by_user_id(u_id):
       stmt = text("SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account"
-                  " INNER JOIN Message ON Message.account_id = :id"
+                  " LEFT JOIN Message ON Message.account_id = :id"
                   " GROUP BY name").params(id=u_id)
       res = db.engine.execute(stmt)
 
