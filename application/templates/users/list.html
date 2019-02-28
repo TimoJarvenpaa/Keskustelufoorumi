@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Users</h1>
+<br>
+<table>
+  <tr>
+    <th style="padding-right:60px;padding-bottom:30px">Name</th>
+    <th style="padding-right:60px;padding-bottom:30px">Username</th>
+    <th style="padding-right:60px;padding-bottom:30px">Created on</th>
+    <th style="padding-right:60px;padding-bottom:30px"># of messages posted</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td style="padding-right:60px;padding-bottom:5px">
+      {{ user.name }}
+    </td>
+    <td style="padding-right:60px;padding-bottom:5px">
+      {{ user.username }}
+    </td>
+    <td style="padding-right:60px;padding-bottom:5px">
+      {{ user.date_created.strftime("%d.%m.%Y at %H:%M (UTC)") }}
+    </td>
+    <td style="padding-right:60px;padding-bottom:5px">
+      {{ user.id|count_total_messages_by_user_id }}
+    </td>
+    <td style="padding-top:5px;padding-bottom:5px;padding-right:10px;">
+      <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}">
+        <input type="submit" value="Delete" class="btn btn-danger">
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

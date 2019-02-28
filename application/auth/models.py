@@ -15,7 +15,8 @@ class User(Base):
     password = db.Column(db.String(144), nullable=False)
     role = db.Column(db.String(16), nullable=False)
 
-    messages = db.relationship("Message", backref='account', lazy=True)
+    messages = db.relationship("Message", backref='account', cascade="save-update, merge, delete", lazy=True)
+    threads = db.relationship("Thread", backref='account', cascade="save-update, merge, delete", lazy=True)
 
     def __init__(self, name, username, password, role):
         self.name = name

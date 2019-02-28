@@ -73,6 +73,8 @@ from application.auth import views
 from application.categories import models
 from application.categories import views
 
+from application.users import views
+
 # kirjautuminen (osa 2)
 from application.auth.models import User
 
