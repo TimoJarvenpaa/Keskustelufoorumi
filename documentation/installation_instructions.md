@@ -13,6 +13,7 @@ Seuraavat työvälineet tulee olla asennettuna:
 * Käynnistä virtuaaliympäristö asennusympäristöstä riippuen joko komennolla `source venv/bin/activate` tai `source venv/Scripts/activate`
 * Lataa ja asenna sovelluksen riippuvuudet virtuaaliympäristöön komennolla `pip install -r requirements.txt`
 * Käynnistä sovellus komennolla `python3 run.py`
+* Sovelluksen pitäisi olla nyt käynnissä osoitteessa http://127.0.0.1:5000/ tai http://localhost:5000/
 
 ## Sovelluksen siirtäminen verkkoon
 

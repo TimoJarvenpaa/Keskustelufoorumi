@@ -1,0 +1,13 @@
+# Käyttöohje
+
+Keskustelufoorumilla olevia viestiketjuja ja niihin lähetettyjä viestejä voi selata kirjautumatta sisään. Tämä onnistuu valitsemalla sivun ylälaidan päävalikosta **List threads**. Yksittäisen viestiketjun viestejä pääsee lukemaan klikkaamalla viestiketjun otsikkoa. Näytettävien viestiketjujen listaa voi rajata viestiketjujen kategorioiden perusteella valitsemalla pudotusvalikosta haluamansa kategorian ja painamalla **Filter**-nappia.
+
+Sovelluksen muut toiminnot vaativat sisäänkirjautumisen. Uuden käyttäjätilin luominen onnistuu sovelluksen päävalikon oikeassa reunassa olevasta **Sign up** -linkistä. Name-kenttään syötetty nimi on käyttäjän nimimerkki ja tulee näkymään muille käyttäjille mm. viestiketjuihin lähetettyjen viestien yhteydessä. Username -nimeä käytetään vain sisäänkirjautumiseen ja sen tulee olla uniikki. Rekisteröitymislomakkeen Role-valikosta voi valita onko luotava käyttäjätili oikeuksiltaan tavallinen käyttäjä vai ylläpitäjä. Todellisuudessa tämä olisi valtava tietoturvariski, mutta sovelluksen eri ominaisuuksien testaaminen on paljon kätevämpää tällä tavoin.
+
+Kun käyttäjätili on rekisteröity, sisäänkirjautuminen onnistuu päävalikon **Log in** -linkkiä klikkaamalla. Sisäänkirjautuneen käyttäjän uloskirjaaminen puolestaan onnistuu **Log out** -linkistä.
+
+Uuden viestiketjun luominen onnistuu kaikilta kirjautuneilta käyttäjiltä päävalikon **Create a new thread** -linkkiä painamalla. Viestin lisääminen viestiketjuun tapahtuu kirjoittamalla valitun viestiketjun alaosassa näkyvään tekstikenttään viesti ja painamalla **Add a new message** -nappia. Tavallinen käyttäjä voi muokata tai poistaa itse luomiaan viestiketjuja ja viestejä niiden oikealla puolella näkyvien **Edit** ja **Delete** -nappien avulla.
+
+Mikäli käyttäjätilin rooli on ylläpitäjä, sovelluksen päävalikossa on valittavissa sekä kategorioiden että käyttäjien hallintanäkymät. **Manage categories** -linkkiä painamalla ylläpitäjä pääsee tarkastelemaan käytössä olevia viestiketjujen kategorioita. Uuden kategorian voi luoda painamalla **Create a new category** -nappia ja olemassa olevia kategorioita voi muokata tai poistaa **Edit** ja **Delete** -nappien avulla.
+
+**Manage users** linkistä ylläpitäjä pääsee käyttäjien hallintasivulle, jossa on listattuna kaikki sovelluksen käyttäjät. Täältä käsin ylläpitäjä voi tarvittaessa poistaa minkä tahansa käyttäjän **Delete**-nappia painamalla. Käyttäjän poistaminen johtaa myös kaikkien ko. käyttäjän kirjoittamien viestien ja aloittamien viestiketjujen poistamiseen.

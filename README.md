@@ -4,17 +4,26 @@
 
 Sovelluksen käyttäminen vaatii käyttäjätunnuksen, jonka voi halutessaan luoda sivulta löytyvän rekisteröitymislomakkeen kautta.
 
-Vaihtoehtoisesti voi myös käyttää alla olevaa valmiiksi luotua käyttäjätunnusta:
+Vaihtoehtoisesti voi myös käyttää alla olevia valmiiksi luotuja käyttäjätunnuksia:
 ```
 username: test
 password: user
 ```
 
+```
+username: admin
+password: test
+```
+
 [Linkki sovelluksen asennusohjeeseen](documentation/installation_instructions.md)
 
-[Linkki sovelluksen tietokantakaaviohahmotelmaan](documentation/forum_diagram.png)
+[Linkki sovelluksen tietokantakaavioon](documentation/db_schema_diagram.png)
 
-[Linkki sovelluksen käyttötapausesimerkkeihin](documentation/user_stories.md)
+[Linkki sovelluksen tietokannan CREATE TABLE -lauseisiin](documentation/db_schema.md)
+
+[Linkki sovelluksen käyttötapausesimerkkeihin](documentation/use_cases.md)
+
+[Linkki sovelluksen käyttöohjeeseen](documentation/user_manual.md)
 
 Harjoitustyöni tavoitteena on tehdä keskustelufoorumi videopeliharrastajien käyttöön. Foorumin käyttäjä voi mm. luoda itselleen käyttäjätunnuksen, lukea muiden käyttäjien kirjoituksia, luoda uusia viestiketjuja tai lisätä viestejä olemassa oleviin ketjuihin. Viestiketjujen luonnin yhteydessä niihin liitetään kategorioita, joiden perusteella näytettävien viestiketjujen listaa voi rajata.
 

@@ -7,7 +7,8 @@
 * Kun käyttäjätunnus luodaan, salasana tallennetaan tietokantaan bcryptin avulla salattuna
 * Sisäänkirjautunut käyttäjä voi kirjautua ulos
 * Etusivulla listataan rekisteröityjen käyttäjien nimet ja heidän kirjoittamiensa viestien lukumäärät seuraavan yhteenvetokyselyn mukaisesti: `SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account LEFT JOIN Message ON Message.account_id = Account.id  GROUP BY name ORDER BY count DESC`
-* Hieman samaan tapaan viestikejuissa, jokaisen viestin yhteydessä näytetään viestin kirjoittaneen käyttäjän nimi ja käyttäjän kirjoittamien viestien lukumäärä, joka saadaan seuraavalla yhteenvetokyselyllä: `(SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account INNER JOIN Message ON Message.account_id = :id GROUP BY name).params(id=u_id)`, missä u_id on käyttäjään liittyvä pääavain
+* Hieman samaan tapaan viestikejuissa, jokaisen viestin yhteydessä näytetään viestin kirjoittaneen käyttäjän nimi ja käyttäjän kirjoittamien viestien lukumäärä, joka saadaan seuraavalla yhteenvetokyselyllä: `(SELECT Account.name AS name, COUNT(Message.id) AS count FROM Account LEFT JOIN Message ON Message.account_id = :id GROUP BY name).params(id=u_id)`, missä u_id on käyttäjään liittyvä pääavain
+* Ylläpitäjä pääsee käsiksi käyttäjien hallintasivulle ja voi sitä kautta poistaa minkä tahansa käyttäjän. Käyttäjän poistamisen seurauksena myös kaikki kyseisen käyttäjän luomat viestit ja viestikejut poistetaan tietokannasta.
 
 ## Viestiketjut
 
@@ -35,8 +36,8 @@
 
 ## Puuttuvia ominaisuuksia ja muita huomautuksia
 
-* Alkuperäisessä suunnitelmassa mainitut peleihin liittyvät toiminnot kuten pelien lisääminen käyttäjien omiin pelikirjastoihin ja peleille annettavat arvosanat jäävät näillä näkymin puuttumaan lopullisesta sovelluksesta
+* Alkuperäisessä suunnitelmassa mainitut peleihin liittyvät toiminnot kuten pelien lisääminen käyttäjien omiin pelikirjastoihin ja peleille annettavat arvosanat jäivät puuttumaan lopullisesta sovelluksesta
 * Viestiketjuja muokattaessa niiden muokkauslomake ei valitettavasti näytä, että mihin kategorioihin ko. viestiketju aiemmin kuului
-* Käyttäjien tietojen muokkaus, kuten salasanan vaihtaminen tai käyttäjien poistaminen ei ole tällä hetkellä mahdollista.
-* Yhdellä sivulla näytettävien viestiketjujen tai viestien määrää ei ole rajoitettu. Flask-paginate -kirjaston avulla asian voisi korjata, jos aika riittää.
-* Viestiketjun viestit listataan nyt vain peräkkäin eikä sovelluksessa ole mahdollisuutta kirjoittaa vastausta yksittäisiin viesteihin
+* Käyttäjien tietojen muokkaus, kuten salasanan vaihtaminen ei ole tällä hetkellä mahdollista.
+* Yhdellä sivulla näytettävien viestiketjujen tai viestien määrää ei ole rajoitettu. Tarkoitus oli käyttää Flask-paginate -kirjastoa asian korjaamiseksi, mutta jätin ominaisuuden toteuttamatta.
+* Viestiketjun viestit listataan nyt vain peräkkäin aikajärjestyksessä eikä sovelluksessa ole mahdollisuutta kirjoittaa suoraa vastausta yksittäisiin viesteihin
